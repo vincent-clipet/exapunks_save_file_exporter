@@ -6,10 +6,10 @@ require 'fileutils'
 # CONFIG #
 ##########
 
-INPUT_DIR = './data/test_data'
-OUTPUT_DIR = './solutions'
-OUTPUT_BEST_SOLUTIONS = "best_solutions.md"
 DEBUG = false
+INPUT_DIR = './data/example'
+OUTPUT_DIR = './solutions'
+OUTPUT_BEST_SOLUTIONS = "best_solutions-example.md"
 
 
 
@@ -161,8 +161,6 @@ input_filenames.each do | filename |
     puts "Skipped (unsolved): #{tmp}"
   end
 end
-
-
 
 # Write a markdown table containing the best values for each level on disk
 write_solutions_markdown(best_solutions)
