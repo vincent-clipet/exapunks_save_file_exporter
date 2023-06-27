@@ -108,11 +108,11 @@ end
 
 def write_solutions_markdown(best_solutions)
   file_best = File.new(OUTPUT_BEST_SOLUTIONS, 'w')
-  file_best.puts("| cycles | size | activity | | solution_best_cycles | solution_best_size | solution_best_activity |")
-  file_best.puts("| ------ | ---- | -------- | | -------------------- | ------------------ | ---------------------- |")
+  file_best.puts("| cycles | size | activity | &nbsp; | solution_best_cycles | solution_best_size | solution_best_activity |")
+  file_best.puts("| :------: | :----: | :--------: | --- | -------------------- | ------------------ | ---------------------- |")
 
   best_solutions.each do | name, v |
-    file_best.puts("| #{v[:cycles]} | #{v[:size]} | #{v[:activity]} | #{v[:best_by_cycles]} | #{v[:best_by_size]} | #{v[:best_by_activity]} |")
+    file_best.puts("| #{v[:cycles]} | #{v[:size]} | #{v[:activity]} | &nbsp; | `#{v[:best_by_cycles]}` | `#{v[:best_by_size]}` | `#{v[:best_by_activity]}` |")
   end
   file_best.close
 end
