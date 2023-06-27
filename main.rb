@@ -19,6 +19,10 @@ OUTPUT_BEST_SOLUTIONS = "best_solutions-example.md"
 # FUNCTIONS #
 #############
 
+INPUT_DIR = ARGV[0] unless ARGV[0].nil?
+OUTPUT_DIR = ARGV[1] unless ARGV[1].nil?
+OUTPUT_BEST_SOLUTIONS = ARGV[2] unless ARGV[2].nil?
+
 class ExapunksSolution
   def to_md
     ret = []
