@@ -1,5 +1,6 @@
 require_relative 'kaitai/exapunks_solution'
 require 'kaitai/struct/struct'
+require 'fileutils'
 
 ##########
 # CONFIG #
@@ -130,6 +131,9 @@ best_solutions = {}
 # Get list of every save file we need to read
 input_filenames = Dir["#{INPUT_DIR}/*.solution"]
 
+# Clean the output folder, to remove any solutions that might not exist anymore
+delete_filenames =  Dir.glob("#{OUTPUT_DIR}/*.md")
+FileUtils.rm_f(delete_filenames)
 
 
 # Iterate list of every save file
