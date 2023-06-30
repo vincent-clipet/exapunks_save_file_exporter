@@ -2,7 +2,7 @@
 
 | cycles | size | activity |
 | ------ | ---- | -------- |
-| 10 | 15 | 4 |
+| 10 | 13 | 4 |
 <hr>
 <br>
 
@@ -15,8 +15,6 @@ MAKE
 COPY M F
 COPY M F
 DROP
-HALT
-
 ```
 
 <br>
@@ -31,5 +29,4 @@ COPY F X
 COPY F M
 COPY X M
 WIPE
-HALT
 ```

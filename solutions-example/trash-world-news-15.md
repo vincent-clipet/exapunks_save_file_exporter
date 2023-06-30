@@ -1,0 +1,81 @@
+## PB013C --- V1
+
+| cycles | size | activity |
+| ------ | ---- | -------- |
+| 2310 | 45 | 7 |
+<hr>
+<br>
+
+**XA**
+
+```
+GRAB 300
+
+MARK RECEIVE
+COPY M X
+
+MARK SEARCH
+TEST EOF
+TJMP EOF
+TEST F = X
+TJMP TRUE
+SEEK 1
+JUMP SEARCH
+
+MARK TRUE
+COPY F M
+SEEK -2
+VOID F
+VOID F
+SEEK -9999
+JUMP RECEIVE
+
+MARK EOF
+COPY -1 M
+SEEK -9999
+
+JUMP RECEIVE
+```
+
+<br>
+
+**XB**
+
+```
+LINK 800
+LINK 799
+GRAB 212
+
+MARK READ_FILE
+TEST EOF
+TJMP EOF
+
+COPY F M
+COPY M X
+
+TEST X = -1
+FJMP REPLACE
+JUMP READ_FILE
+
+MARK EOF
+DROP
+LINK -1
+LINK -1
+KILL
+
+MARK REPLACE
+SEEK -1
+COPY X F
+JUMP READ_FILE
+```
+
+<br>
+
+**XC**
+
+```
+NOOP
+LINK 800
+GRAB 200
+LINK 800
+```

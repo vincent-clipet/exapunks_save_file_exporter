@@ -1,0 +1,69 @@
+## PB002 --- UNROLLED + DIV 10 (COPY) (COPY)
+
+| cycles | size | activity |
+| ------ | ---- | -------- |
+| 213 | 41 | 9 |
+<hr>
+<br>
+
+**XA**
+
+```
+LINK 800
+GRAB 200
+COPY F M
+WIPE
+MAKE
+LINK 800
+
+MARK LOOP
+ COPY M F
+JUMP LOOP
+```
+
+<br>
+
+**XB**
+
+```
+NOOP
+LINK 800
+COPY M X
+
+
+REPL LOOP_2_PRE
+REPL LOOP_3_PRE
+MARK LOOP
+COPY X M
+SUBI X 3 X
+TEST X < 0
+FJMP LOOP
+JUMP KILL
+
+
+MARK LOOP_2_PRE
+SUBI X 1 X
+NOOP
+MARK LOOP_2
+COPY X M
+SUBI X 3 X
+TEST X < 0
+FJMP LOOP_2
+JUMP KILL
+
+
+MARK LOOP_3_PRE
+SUBI X 2 X
+NOOP
+NOOP
+MARK LOOP_3
+COPY X M
+SUBI X 3 X
+TEST X < 0
+FJMP LOOP_3
+
+
+MARK KILL
+LINK 800
+KILL
+```
