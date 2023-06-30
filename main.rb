@@ -24,36 +24,36 @@ OUTPUT_DIR = ARGV[1] unless ARGV[1].nil?
 OUTPUT_BEST_SOLUTIONS = ARGV[2] unless ARGV[2].nil?
 
 LEVELS = {
-  "PB000"=>"trash-world-news", 
-  "PB001"=>"trash-world-news", 
-  "PB002"=>"trash-world-news", 
-  "PB003B"=>"euclids-pizza", 
-  "PB004"=>"mitsuzen-hdi10", 
-  "PB005"=>"last-stop-snaxnet", 
-  "PB006B"=>"zebros-copies", 
-  "PB007"=>"sfcta-highway-sign-#4902", 
-  "PB008"=>"unknown-network-1", 
-  "PB009"=>"uc-berkeley", 
-  "PB010B"=>"workhouse", 
-  "PB011B"=>"mitsuzen-hdi10", 
-  "PB012"=>"equity-first-bank", 
-  "PB013C"=>"trash-world-news",
-  "PB014"=>"kgogtv", 
-  "PB015"=>"tec-redshift", 
-  "PB016"=>"digital-library-project",
-  "PB018"=>"emersons-guide", 
-  "PB020"=>"sawayama-wonderdisc", 
-  "PB021"=>"alliance-power-and-light", 
-  "PB022"=>"deadlocks-domain", 
-  "PB023"=>"xtreme-league-baseball",
-  "PB024"=>"kings-ransom-online", 
-  "PB025"=>"equity-first-bank", 
-  "PB027"=>"valhalla", 
-  "PB028"=>"kgogtv", 
-  "PB037"=>"trash-world-news", 
-  "PB038"=>"mitsuzen-hdi10", 
-  "PB039"=>"sandbox", 
-  "PB040"=>"tec-exablaster-modem"
+  "PB000" => { :name => "trash-world-news", :order => 1 }, 
+  "PB001" => { :name => "trash-world-news", :order => 2 }, 
+  "PB037" => { :name => "trash-world-news", :order => 3 }, 
+  "PB002" => { :name => "trash-world-news", :order => 4 }, 
+  "PB003B" => { :name => "euclids-pizza", :order => 5 }, 
+  "PB004" => { :name => "mitsuzen-hdi10", :order => 6 }, 
+  "PB005" => { :name => "last-stop-snaxnet", :order => 7 }, 
+  "PB006B" => { :name => "zebros-copies", :order => 8 }, 
+  "PB007" => { :name => "sfcta-highway-sign-#4902", :order => 9 }, 
+  "PB008" => { :name => "unknown-network-1", :order => 10 }, 
+  "PB009" => { :name => "uc-berkeley", :order => 11 }, 
+  "PB010B" => { :name => "workhouse", :order => 12 }, 
+  "PB012" => { :name => "equity-first-bank", :order => 13 },
+  "PB011B" => { :name => "mitsuzen-hdi10", :order => 14 },  
+  "PB013C" => { :name => "trash-world-news", :order => 15 },
+  "PB014" => { :name => "kgogtv", :order => 16 }, 
+  "PB015" => { :name => "tec-redshift", :order => 17 }, 
+  "PB016" => { :name => "digital-library-project", :order => 18 },
+  "PB040" => { :name => "tec-exablaster-mode", :order => 19 },
+  "PB018" => { :name => "emersons-guide", :order => 20 }, 
+  "PB027" => { :name => "valhalla", :order => 21 }, 
+  "PB038" => { :name => "mitsuzen-hdi10", :order => 22 }, 
+  "PB020" => { :name => "sawayama-wonderdisc", :order => 23 }, 
+  "PB021" => { :name => "alliance-power-and-light", :order => 24 }, 
+  "PB022" => { :name => "deadlocks-domain", :order => 25 }, 
+  "PB023" => { :name => "xtreme-league-baseball", :order => 26 },
+  "PB024" => { :name => "kings-ransom-online", :order => 27 }, 
+  "PB028" => { :name => "kgogtv", :order => 28 }, 
+  "PB025" => { :name => "equity-first-bank", :order => 29 }, 
+  "PB039" => { :name => "sandbox", :order => 9999 }
 }
 
 
@@ -148,7 +148,7 @@ def update_best_solutions(best_solutions, level_id, filename, win_stats)
 end
 
 def write_solutions_markdown(best_solutions)
-  best_solutions = best_solutions.sort.to_h
+  best_solutions = best_solutions.sort_by {|k,v| LEVELS[k][:order]}.to_h
   file_best = File.new(OUTPUT_BEST_SOLUTIONS, 'w')
   file_best.puts("| id  | level | cycles | size  | activity | &nbsp; | solution_best_cycles | solution_best_size | solution_best_activity |")
   file_best.puts("| --- | ----- | :----: | :---: | :------: | ------ | -------------------- | ------------------ | ---------------------- |")
@@ -157,7 +157,7 @@ def write_solutions_markdown(best_solutions)
     # puts level_id
     # puts 
     # puts v.to_s
-    file_best.puts("| #{level_id} | #{LEVELS[level_id]} | #{v[:cycles]} | #{v[:size]} | #{v[:activity]} | &nbsp; | `#{v[:best_by_cycles]}` | `#{v[:best_by_size]}` | `#{v[:best_by_activity]}` |")
+    file_best.puts("| #{level_id} | #{LEVELS[level_id][:name]} | #{v[:cycles]} | #{v[:size]} | #{v[:activity]} | &nbsp; | `#{v[:best_by_cycles]}` | `#{v[:best_by_size]}` | `#{v[:best_by_activity]}` |")
   end
   file_best.close
 end
@@ -190,7 +190,7 @@ input_filenames.each do | filename |
 
   # transform data for convenience
   level_id = solution.file_id.string
-  level_name = LEVELS[level_id]
+  level_name = LEVELS[level_id][:name]
   # level_name = filename.gsub(/.*\/(.*)-(.*)\.solution/, '\1')
   solution_name = filename.gsub(/.*\/(.*)-(.*)\.solution/, '\1-\2')
   win_stats = solution.win_stats.map { |i| i.value.to_i }
