@@ -190,6 +190,8 @@ input_filenames.each do | filename |
 
   # transform data for convenience
   level_id = solution.file_id.string
+
+  next if LEVELS[level_id].nil? # empty solution
   level_name = LEVELS[level_id][:name]
   # level_name = filename.gsub(/.*\/(.*)-(.*)\.solution/, '\1')
   solution_name = filename.gsub(/.*\/(.*)-(.*)\.solution/, '\1-\2')
