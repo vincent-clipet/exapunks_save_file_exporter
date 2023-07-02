@@ -53,7 +53,10 @@ LEVELS = {
   "PB024" => { :name => "kings-ransom-online", :order => 27 }, 
   "PB028" => { :name => "kgogtv", :order => 28 }, 
   "PB025" => { :name => "equity-first-bank", :order => 29 }, 
-  "PB039" => { :name => "sandbox", :order => 9999 }
+  "PB026B" => { :name => "tec-exablaster-modem", :order => 30 },
+  "PB029B" => { :name => "last-stop-snaxnet", :order => 31 },
+  "PB030" => { :name => "mitsuzen-hdi10", :order => 32 },
+  "PB039" => { :name => "sandbox", :order => 9999 },
 }
 
 
