@@ -42,7 +42,7 @@ LEVELS = {
   "PB014" => { :name => "kgogtv", :order => 16 },
   "PB015" => { :name => "tec-redshift", :order => 17 },
   "PB016" => { :name => "digital-library-project", :order => 18 },
-  "PB040" => { :name => "tec-exablaster-mode", :order => 19 },
+  "PB040" => { :name => "tec-exablaster-modem", :order => 19 },
   "PB018" => { :name => "emersons-guide", :order => 20 },
   "PB027" => { :name => "valhalla", :order => 21 },
   "PB038" => { :name => "mitsuzen-hdi10", :order => 22 },
@@ -56,6 +56,10 @@ LEVELS = {
   "PB026B" => { :name => "tec-exablaster-modem", :order => 30 },
   "PB029B" => { :name => "last-stop-snaxnet", :order => 31 },
   "PB030" => { :name => "mitsuzen-hdi10", :order => 32 },
+  "PB032" => { :name => "holman-dynamics", :order => 33 },
+  "PB033" => { :name => "u.s.-government", :order => 34 },
+  "PB034" => { :name => "unknown-network-2", :order => 35 },
+  "PB035B" => { :name => "tec-exablaster-modem", :order => 36 },
   "PB039" => { :name => "sandbox", :order => 9999 },
 }
 
